@@ -23,6 +23,9 @@ services.register(middlewares)
 
 This is usually done in [`configure.swift`](../getting-started/structure.md#configureswift).
 
+!!! warning
+    Middleware are called in reverse order compared to their declaration order. SesssionsMiddleware should thus be registered on MiddlewareConfig AFTER all other middlewares that depends on it, such as AuthenticationSessionsMiddleware.
+
 ### Per Route
 
 To enable sessions for a group of routes, use the [`grouped(...)`](https://api.vapor.codes/vapor/latest/Vapor/Protocols/Router.html) methods on `Router`.
